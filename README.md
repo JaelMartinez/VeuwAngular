@@ -2,7 +2,6 @@
 
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
 
-
 ## Descripción
 
 Veuw es una aplicación de streaming de películas y series. Está desarrollado utilizando el framework de Angular, HTML, CSS, JavaScript y Tailwind CSS.
@@ -11,11 +10,11 @@ Veuw es una aplicación de streaming de películas y series. Está desarrollado 
 
 - **Desplazamiento automático**: Una galería de imágenes con desplazamiento horizontal suave.
 - **Efectos de Hover**: Al pasar el mouse sobre una película, aparecen opciones de reproducción y me gusta, junto con un título estilizado.
-- **Carousel de películas**: Se me ocurrió crear un carrusel que le diera la opción a los usuarios de ver una película random.(Actualmente no lo he podido implementar a angular)
-- **Slider de peliculas**: Opcion para ver una gran variedad de trailers de peliculas hecho con la api de TMDB.
+- **Carousel de películas**: Se me ocurrió crear un carrusel que le diera la opción a los usuarios de ver una película random (Actualmente no lo he podido implementar en Angular).
+- **Slider de películas**: Opción para ver una gran variedad de trailers de películas hecho con la API de TMDB.
 - **Reproductor de video**: En los sliders de las películas se muestra la opción para reproducir video y este te lleva a un reproductor de YouTube.
 - **Diseño Responsivo**: Utiliza Tailwind CSS para garantizar que la aplicación sea responsiva en diferentes dispositivos y tamaños de pantalla.
-- **Buscador(en proceso)**: Permite buscar películas pero tengo que cambiar varias funciones.
+- **Buscador (en proceso)**: Permite buscar películas, pero tengo que cambiar varias funciones.
 
 ## Tecnologías Utilizadas
 
@@ -71,10 +70,9 @@ Veuw es una aplicación de streaming de películas y series. Está desarrollado 
 
 ![Información de la Película](src/assets/image/imgsRepo/Info.png)
 
+9. Si quieres cerrar sesión solo haz hover sobre el icono de perfil y clickea en logout.
 
-10. Si quieres cerrar sesión solo haz hover sobre el icono de perfil y clickea en logout.
-
-11. Utiliza el buscador para encontrar películas y series. Escribe lo que buscas, dale enter y te mostrara una lista de peliculas y series con esos nombres.
+10. Utiliza el buscador para encontrar películas y series. Escribe lo que buscas, dale enter y te mostrará una lista de películas y series con esos nombres.
 
 ![Buscador](src/assets/image/imgsRepo/Search.png)
 
@@ -84,7 +82,7 @@ Primero, decidí en qué versión de Angular implementaría el proyecto. Opté p
 
 Una vez creado el proyecto, decidí implementar la API de TMDB para hacer que en mis sliders de películas se generara la información de manera automática y más eficiente. Investigué sobre la API e implementé las funciones con TypeScript para obtener información de distintas categorías de películas y series. Esto me llevó bastante tiempo, ya que no sabía mucho de TypeScript, pero finalmente lo logré.
 
-Luego, implementé las funciones para los botones de reproducción de los trailers, favoritos y la información de las películas. Tuve que investigar mucho al respecto, pero se logró. Despues, implementé el resto de las funciones de manera similar a las anteriores.
+Luego, implementé las funciones para los botones de reproducción de los trailers, favoritos y la información de las películas. Tuve que investigar mucho al respecto, pero se logró. Después, implementé el resto de las funciones de manera similar a las anteriores.
 
 Para el diseño responsivo, decidí utilizar las funciones de Tailwind y CSS para manejar el tamaño del header y el texto del home, haciéndolo responsivo en todos los dispositivos.
 
