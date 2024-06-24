@@ -1,0 +1,92 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* Custom Media Queries for responsive slider */
+
+@media (max-width: 1640px) {
+  .thumbnail {
+    margin-top: -180px; /* Ajusta este valor según sea necesario */
+  }
+  .thumbnail .item {
+    width: 250px;
+    height: 150px;
+  }
+  .slider .list .item .content h2 {
+    font-size: 60px; /* Ajusta el tamaño del texto */
+  }
+  .slider .list .item .content p {
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    max-width: 500px;
+  }
+  header #header {
+    padding: 16px 24px; /* Ajusta el padding del header */
+  }
+}
+
+@media (min-width: 2560px) {
+  .thumbnail {
+    margin-top: -350px; /* Ajusta este valor según sea necesario */
+  }
+  .thumbnail .item {
+    width: 500px;
+    height: 280px;
+  }
+  .slider .list .item .content h2 {
+    font-size: 120px; /* Ajusta el tamaño del texto */
+  }
+  .slider .list .item .content p {
+    font-size: 24px; /* Ajusta el tamaño del texto */
+    max-width: 900px;
+  }
+  header #header {
+    padding: 32px 48px; /* Ajusta el padding del header */
+    font-size: 24px; /* Ajusta el tamaño del texto del header */
+  }
+}
+
+@media (min-width: 3840px) {
+  .thumbnail {
+    margin-top: -500px; /* Ajusta este valor según sea necesario */
+  }
+  .thumbnail .item {
+    width: 700px;
+    height: 400px;
+  }
+  .slider .list .item .content h2 {
+    font-size: 160px; /* Ajusta el tamaño del texto */
+  }
+  .slider .list .item .content p {
+    font-size: 32px; /* Ajusta el tamaño del texto */
+    max-width: 1200px;
+  }
+  header #header {
+    padding: 48px 64px; /* Ajusta el padding del header */
+    font-size: 32px; /* Ajusta el tamaño del texto del header */
+  }
+}

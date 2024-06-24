@@ -1,0 +1,341 @@
+<app-header></app-header>
+<!-- Sección Trending Movies -->
+<div class="new-row mt-24">
+  <div class="new-header">
+    <h3 class="new-title">Trending Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of trendingMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
+
+<!-- Sección Popular Movies -->
+<div class="new-row mt-8">
+  <div class="new-header">
+    <h3 class="new-title">Popular Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of popularMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
+
+<!-- Sección Action Movies -->
+<div class="new-row mt-8">
+  <div class="new-header">
+    <h3 class="new-title">Action Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of actionMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
+
+<!-- Sección Comedy Movies -->
+<div class="new-row mt-8">
+  <div class="new-header">
+    <h3 class="new-title">Comedy Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of comedyMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
+
+<!-- Sección Sci-Fi Movies -->
+<div class="new-row mt-8">
+  <div class="new-header">
+    <h3 class="new-title">Sci-Fi Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of sciFiMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
+<!-- Sección Drama Movies -->
+<div class="new-row mt-8">
+  <div class="new-header">
+    <h3 class="new-title">Drama Movies</h3>
+    <div class="new-progress-bar"></div>
+  </div>
+  <div class="new-container flex justify-center overflow-hidden mt-6">
+    <button class="new-handle new-left-handle">
+      <div class="new-text">&#8249;</div>
+    </button>
+    <div
+      class="new-slider flex gap-4 transition-transform duration-300 ease-in-out"
+    >
+      <div
+        *ngFor="let movie of dramaMovies"
+        class="new-slide relative overflow-hidden rounded-lg"
+        [attr.data-movie-id]="movie.id"
+        [attr.data-media-type]="movie.media_type"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+        />
+        <div
+          class="hover-content absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out"
+        >
+          <h3 class="text-xl text-white mb-4">
+            {{ movie.title || movie.name }}
+          </h3>
+          <div class="flex space-x-4">
+            <button
+              class="icon-button play-button"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button fav-button">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button
+              class="icon-button info-button flex items-center"
+              [attr.data-movie-id]="movie.id"
+              [attr.data-media-type]="movie.media_type"
+            >
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="new-handle new-right-handle">
+      <div class="new-text">&#8250;</div>
+    </button>
+  </div>
+</div>
