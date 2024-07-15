@@ -477,7 +477,7 @@ svg {
   }
 
   .title-text {
-    font-size: 3.75rem; /* 60px */
+    font-size: 0.115rem; /* 60px */
   }
 
   .description-text {
@@ -492,7 +492,7 @@ svg {
   }
 
   .title-text {
-    font-size: 7.5rem; /* 120px */
+    font-size: 72.5rem; /* 120px */
   }
 
   .description-text {
@@ -504,6 +504,133 @@ svg {
 @media (min-width: 3840px) {
   .category-text {
     font-size: 2rem; /* Adjust text size */
+  }
+
+  .title-text {
+    font-size: 10rem; /* 160px */
+  }
+
+  .description-text {
+    font-size: 2rem; /* 32px */
+    max-width: 1200px;
+  }
+}
+/* Custom styles for thumbnails */
+.thumbnail .item {
+  @apply w-[400px] h-[220px] filter brightness-50 transition duration-500;
+}
+
+@media (max-width: 1640px) {
+  .thumbnail {
+    @apply mt-[-180px];
+  }
+  .thumbnail .item {
+    @apply w-[250px] h-[150px];
+  }
+}
+
+@media (min-width: 2560px) {
+  .thumbnail {
+    @apply mt-[-450px];
+  }
+  .thumbnail .item {
+    @apply w-[550px] h-[320px];
+  }
+}
+
+@media (min-width: 3440px) {
+  .thumbnail {
+    @apply mt-[-650px];
+  }
+  .thumbnail .item {
+    @apply w-[840px] h-[480px];
+  }
+}
+
+/* Hide thumbnails on small screens */
+@media (max-height: 790px) {
+  .thumbnail {
+    @apply hidden;
+  }
+}
+
+/* Texto de categoría */
+.category-text {
+  font-size: 1rem;
+}
+
+.title-text {
+  font-size: 6.25rem; /* 100px */
+}
+
+.description-text {
+  font-size: 1.25rem; /* 20px */
+  max-width: 700px;
+}
+
+@media (max-width: 1640px) {
+  .category-text {
+    font-size: 0.75rem; /* Ajustar tamaño de texto */
+  }
+
+  .title-text {
+    font-size: 3.75rem; /* 60px */
+  }
+
+  .description-text {
+    font-size: 1rem; /* 16px */
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-text {
+    font-size: 0.625rem; /* Ajustar tamaño de texto */
+  }
+
+  .title-text {
+    font-size: 2.5rem; /* 40px */
+  }
+
+  .description-text {
+    font-size: 0.875rem; /* 14px */
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-text {
+    font-size: 0.5rem; /* Ajustar tamaño de texto */
+  }
+
+  .title-text {
+    font-size: 1.875rem; /* 30px */
+  }
+
+  .description-text {
+    font-size: 0.75rem; /* 12px */
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .category-text {
+    font-size: 1.5rem; /* Ajustar tamaño de texto */
+  }
+
+  .title-text {
+    font-size: 7.5rem; /* 120px */
+  }
+
+  .description-text {
+    font-size: 1.5rem; /* 24px */
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 3840px) {
+  .category-text {
+    font-size: 2rem; /* Ajustar tamaño de texto */
   }
 
   .title-text {

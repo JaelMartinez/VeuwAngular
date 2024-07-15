@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { MoviesComponent } from './movies/movies.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-root',
+  template: ` <router-outlet></router-outlet> `,
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, MoviesComponent, HeaderComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [RouterLink, RouterOutlet, HeaderComponent],
 })
-export class AppComponent {
-  title = 'VeuwAngular';
-}
+export class AppComponent {}

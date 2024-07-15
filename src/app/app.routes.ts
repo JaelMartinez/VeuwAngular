@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { LoginComponent } from './login/login.component';
@@ -23,3 +24,9 @@ export const routes: Routes = [
   { path: 'header', component: HeaderComponent },
   { path: 'search', component: SearchResultsComponent },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

@@ -164,11 +164,6 @@ svg {
   align-items: center;
 }
 
-.new-title {
-  font-size: 2rem;
-  margin: 0;
-}
-
 .new-progress-bar {
   display: flex;
   gap: 0.25rem;

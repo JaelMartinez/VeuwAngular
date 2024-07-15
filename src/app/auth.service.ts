@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private users: { username: string, password: string }[] = JSON.parse(localStorage.getItem('users')!) || [];
+  private users: { username: string; password: string }[] =
+    JSON.parse(localStorage.getItem('users')!) || [];
 
   register(username: string, password: string): boolean {
-    const userExists = this.users.find(user => user.username === username);
+    const userExists = this.users.find((user) => user.username === username);
 
     if (userExists) {
       return false;
@@ -19,12 +20,16 @@ export class AuthService {
   }
 
   login(username: string, password: string): boolean {
-    const user = this.users.find(user => user.username === username && user.password === password);
+    const user = this.users.find(
+      (user) => user.username === username && user.password === password
+    );
     return !!user;
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('loggedIn') || !!sessionStorage.getItem('loggedIn');
+    return (
+      !!localStorage.getItem('loggedIn') || !!sessionStorage.getItem('loggedIn')
+    );
   }
 
   logout() {
