@@ -265,7 +265,6 @@ export class MoviesComponent implements OnInit, AfterViewInit {
       console.error('Error handling play button click:', error);
     }
   }
-
   async handleFavoriteButtonClick(
     title: string,
     imageSrc: string,
@@ -277,11 +276,20 @@ export class MoviesComponent implements OnInit, AfterViewInit {
         movieId,
         mediaType
       );
-      if (videoSrc) {
-        this.favoritesService.addToFavorites(title, imageSrc, videoSrc);
-        console.log('Added to favorites:', { title, imageSrc, videoSrc });
+      const userId = this.authService.getUserId();
+      if (videoSrc && userId !== null) {
+        this.favoritesService
+          .addToFavorites(title, imageSrc, videoSrc, Number(userId))
+          .subscribe(
+            (response) => {
+              console.log('Added to favorites:', response);
+            },
+            (error) => {
+              console.error('Error adding to favorites:', error);
+            }
+          );
       } else {
-        console.error('videoSrc is null');
+        console.error('userId or videoSrc is null', { videoSrc, userId });
       }
     } catch (error) {
       console.error('Error handling favorite button click:', error);

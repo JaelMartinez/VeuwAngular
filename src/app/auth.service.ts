@@ -1,39 +1,65 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private users: { username: string; password: string }[] =
-    JSON.parse(localStorage.getItem('users')!) || [];
+  private apiUrl = 'https://localhost:7284/api/auth';
 
-  register(username: string, password: string): boolean {
-    const userExists = this.users.find((user) => user.username === username);
+  constructor(private http: HttpClient) {}
 
-    if (userExists) {
-      return false;
-    }
-
-    this.users.push({ username, password });
-    localStorage.setItem('users', JSON.stringify(this.users));
-    return true;
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, {
+      email: username,
+      password,
+    });
   }
 
-  login(username: string, password: string): boolean {
-    const user = this.users.find(
-      (user) => user.username === username && user.password === password
-    );
-    return !!user;
+  register(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, {
+      email: username,
+      password,
+    });
   }
 
   isLoggedIn(): boolean {
-    return (
-      !!localStorage.getItem('loggedIn') || !!sessionStorage.getItem('loggedIn')
-    );
+    return !!localStorage.getItem('token');
   }
 
   logout() {
-    localStorage.removeItem('loggedIn');
-    sessionStorage.removeItem('loggedIn');
+    localStorage.removeItem('token');
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  getUserId(): number | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        return decoded[
+          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+        ]
+          ? Number(
+              decoded[
+                'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+              ]
+            )
+          : null;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
+    }
+    return null;
   }
 }

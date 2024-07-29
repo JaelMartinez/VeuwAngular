@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FavoritesService } from '../favorites.service';
 import { MovieService } from '../services/movie.service';
+import { ThumbnailService } from '../services/thumbnail.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../header/header.component';
@@ -23,7 +24,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   items!: NodeListOf<Element>;
-  thumbnails!: NodeListOf<Element>;
+  thumbnails: any[] = []; // Cambiado a any[]
   countItem!: number;
   itemActive: number = 0;
   refreshInterval: any;
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private el: ElementRef,
     private favoritesService: FavoritesService,
     private movieService: MovieService,
+    private thumbnailService: ThumbnailService,
     private cdr: ChangeDetectorRef,
     private http: HttpClient
   ) {}
@@ -67,6 +69,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.popularSeries = await this.fillMoviesArrayWithTrailers(
         'popularSeries'
       );
+      this.thumbnails =
+        (await this.thumbnailService.getThumbnails().toPromise()) || []; // Asignar siempre un array
       this.cdr.detectChanges();
       this.initializeReferencesAndListeners();
     } catch (error) {
@@ -119,8 +123,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   initializeReferencesAndListeners() {
     this.items = this.el.nativeElement.querySelectorAll('.slider .list .item');
-    this.thumbnails =
-      this.el.nativeElement.querySelectorAll('.thumbnail .item');
     this.countItem = this.items.length;
 
     const nextButton = this.el.nativeElement.querySelector('#next');
@@ -133,13 +135,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (prevButton) {
       this.renderer.listen(prevButton, 'click', () => this.prevClick());
     }
-
-    this.thumbnails.forEach((thumbnail, index) => {
-      this.renderer.listen(thumbnail, 'click', () => {
-        this.itemActive = index;
-        this.showSlider();
-      });
-    });
 
     this.refreshInterval = setInterval(() => {
       nextButton?.click();
@@ -192,7 +187,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
     });
   }
-
   setupFavoriteButtonListeners() {
     const favButtons = this.el.nativeElement.querySelectorAll('.fav-button');
     favButtons.forEach((button: HTMLElement) => {
@@ -254,7 +248,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       console.error('Error handling play button click:', error);
     }
   }
-
   async handleFavoriteButtonClick(
     title: string,
     imageSrc: string,
@@ -266,11 +259,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
         movieId,
         mediaType
       );
-      if (videoSrc) {
-        this.favoritesService.addToFavorites(title, imageSrc, videoSrc);
-        console.log('Added to favorites:', { title, imageSrc, videoSrc });
+      const userId = this.authService.getUserId();
+      if (videoSrc && userId !== null) {
+        this.favoritesService
+          .addToFavorites(title, imageSrc, videoSrc, Number(userId))
+          .subscribe(
+            (response) => {
+              console.log('Added to favorites:', response);
+            },
+            (error) => {
+              console.error('Error adding to favorites:', error);
+            }
+          );
       } else {
-        console.error('videoSrc is null');
+        console.error('userId or videoSrc is null', { videoSrc, userId });
       }
     } catch (error) {
       console.error('Error handling favorite button click:', error);

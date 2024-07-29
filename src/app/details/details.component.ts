@@ -4,6 +4,7 @@ import { MovieService } from '../services/movie.service';
 import { FavoritesService } from '../favorites.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-details',
@@ -19,7 +20,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private authService: AuthService // Añadido
   ) {}
 
   async ngOnInit() {
@@ -54,6 +56,7 @@ export class DetailsComponent implements OnInit {
       console.error('Error handling play button click:', error);
     }
   }
+
   async handleFavoriteButtonClick(
     title: string,
     imageSrc: string,
@@ -65,12 +68,20 @@ export class DetailsComponent implements OnInit {
         movieId,
         mediaType
       );
-      if (videoSrc) {
-        const fullImageSrc = `https://image.tmdb.org/t/p/w500${imageSrc}`;
-        this.favoritesService.addToFavorites(title, fullImageSrc, videoSrc);
-        console.log('Added to favorites:', { title, fullImageSrc, videoSrc });
+      const userId = this.authService.getUserId();
+      if (videoSrc && userId !== null) {
+        this.favoritesService
+          .addToFavorites(title, imageSrc, videoSrc, Number(userId))
+          .subscribe(
+            (response) => {
+              console.log('Added to favorites:', response);
+            },
+            (error) => {
+              console.error('Error adding to favorites:', error);
+            }
+          );
       } else {
-        console.error('videoSrc is null');
+        console.error('userId or videoSrc is null', { videoSrc, userId });
       }
     } catch (error) {
       console.error('Error handling favorite button click:', error);

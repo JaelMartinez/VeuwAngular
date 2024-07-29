@@ -3,6 +3,9 @@ import { FavoritesService } from '../favorites.service';
 import { FavoriteItem } from '../favorite-item.model';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -11,6 +14,8 @@ import { HeaderComponent } from '../header/header.component';
   imports: [CommonModule, HeaderComponent],
 })
 export class FavoritesComponent implements OnInit {
+  favorites: FavoriteItem[] = [];
+
   constructor(
     private favoritesService: FavoritesService,
     private renderer: Renderer2,
@@ -18,18 +23,37 @@ export class FavoritesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.renderFavorites();
+    this.loadFavorites();
+  }
+
+  loadFavorites() {
+    this.favoritesService
+      .getFavorites()
+      .pipe(
+        catchError((error) => {
+          console.error('Error loading favorites:', error);
+          return of([]);
+        })
+      )
+      .subscribe((favorites) => {
+        this.favorites = favorites;
+        this.renderFavorites();
+      });
   }
 
   renderFavorites() {
     const favoritesContainer = this.el.nativeElement.querySelector(
       '#favorites-container'
     );
-    const favorites: FavoriteItem[] = this.favoritesService.getFavorites();
+
+    if (!favoritesContainer) {
+      console.error('Favorites container not found');
+      return;
+    }
 
     favoritesContainer.innerHTML = '';
 
-    favorites.forEach((favorite: FavoriteItem) => {
+    this.favorites.forEach((favorite: FavoriteItem) => {
       const slide = this.renderer.createElement('div');
       this.renderer.addClass(slide, 'new-slide');
       this.renderer.addClass(slide, 'relative');
@@ -44,7 +68,7 @@ export class FavoritesComponent implements OnInit {
             <button class="icon-button play-button w-12 h-12" data-video-src="${favorite.videoSrc}">
               <i class="fas fa-play"></i>
             </button>
-            <button class="icon-button remove-fav-button w-12 h-12">
+            <button class="icon-button remove-fav-button w-12 h-12" data-id="${favorite.id}">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
@@ -54,9 +78,13 @@ export class FavoritesComponent implements OnInit {
       this.renderer.listen(
         slide.querySelector('.remove-fav-button'),
         'click',
-        () => {
-          this.favoritesService.removeFromFavorites(favorite.title);
-          slide.remove();
+        (event) => {
+          const id = (event.target as HTMLElement).getAttribute('data-id');
+          this.favoritesService
+            .removeFromFavorites(Number(id))
+            .subscribe(() => {
+              this.loadFavorites();
+            });
         }
       );
 

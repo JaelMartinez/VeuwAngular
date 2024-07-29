@@ -1,10 +1,10 @@
 # VeuwAngular
 
-Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 18.1.0.
 
 ## Descripción
 
-Veuw es una aplicación de streaming de películas y series. Está desarrollado utilizando el framework de Angular, HTML, CSS, JavaScript y Tailwind CSS.
+Veuw es una aplicación de streaming de películas y series. Está desarrollada utilizando el framework de Angular, HTML, CSS, JavaScript y Tailwind CSS.
 
 ## Características
 
@@ -15,6 +15,8 @@ Veuw es una aplicación de streaming de películas y series. Está desarrollado 
 - **Reproductor de video**: En los sliders de las películas se muestra la opción para reproducir video y este te lleva a un reproductor de YouTube.
 - **Diseño Responsivo**: Utiliza Tailwind CSS para garantizar que la aplicación sea responsiva en diferentes dispositivos y tamaños de pantalla.
 - **Buscador (en proceso)**: Permite buscar películas, pero tengo que cambiar varias funciones.
+- **Login y Registro**: Implementado con base de datos SQL Server para manejar autenticación de usuarios.
+- **Visualización de Thumbnails**: Muestra películas y series que son tendencia en julio de 2024, cargadas desde la base de datos.
 
 ## Tecnologías Utilizadas
 
@@ -23,6 +25,7 @@ Veuw es una aplicación de streaming de películas y series. Está desarrollado 
 - **CSS**
 - **JavaScript**
 - **Tailwind CSS**
+- **SQL Server**
 
 ## Instalación
 
@@ -62,7 +65,7 @@ Veuw es una aplicación de streaming de películas y series. Está desarrollado 
 
 6. En el header puedes navegar a la sección de series y películas, estos tendrán sliders que cumplen la misma función.
 
-7. En el header podrás ver una sección de favoritos, aquí se guardarán todas las películas y series que marques como favoritas al clickear el corazón.
+7. En el header podrás ver una sección de favoritos, aquí se guardarán todas las películas y series que marques como favoritas al clickear en el corazón.
 
 ![Sección de Favoritos](src/assets/image/imgsRepo/Favorites.png)
 
@@ -101,20 +104,50 @@ Para el diseño responsivo, decidí utilizar las funciones de Tailwind y CSS par
 | Se mejoró la seguridad en el login. |  |  |
 
 ## 3er Sprint
+
 En este tercer sprint, nos encargamos de agregar el testing para nuestras funciones de JavaScript.
 
 ## Tecnologías Utilizadas
+
 - Karma y Jasmine
 - RxJS
 
 ## Imagen del Testing
+
 ![Testing](src/assets/image/imgsRepo/Testing.png)
+![CodeCoverage](src/assets/image/imgsRepo/CodeCoverage.png)
+
 ## 3er Sprint Review
 
-| ¿Qué salió bien?                                     | ¿Qué puedo hacer diferente?                                                                                                                                                                                                                                                                                                                                       | ¿Qué no salió bien?                                         |
-|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| Agregué testing a todos los componentes.             | Cambiar la manera en que los videos de mis películas se cargan. El problema radica en que la API de TMDB no tiene suficientes trailers y tarda demasiado en cargar videos. Para esto, se me ocurre implementar otra API, como la de YouTube, para que lea los nombres de las series y películas y cargue un trailer para estas. Así no tardaría tanto en cargar los videos de las películas y series, y además solucionaría el problema que tengo en el buscador, que a veces algunas películas y series no tienen video. | El tema del performance no se ha mejorado mucho.                   |
-| Agregué el testing para todos los servicios.         |                                                                                                                                                                                                                                                                                                                                                                   | La API de TMDB no tiene suficientes trailers y tarda demasiado en cargar videos.                   |
-| Se logró que un 90% de los tests pasaran.            |                                                                                                                                                                                                                                                                                                                                                                   | El buscador a veces no encuentra videos para algunas películas y series.                            |
-| Se implementó RxJS.                                  |                                                                                                                                                                                                                                                                                                                                                                   |                                                             |
-| Se mejoró un poco más el diseño responsivo.          |                                                                                                                                                                                                                                                                                                                                                                   |                                                             |
+| ¿Qué salió bien? | ¿Qué puedo hacer diferente? | ¿Qué no salió bien? |
+|------------------|-----------------------------|---------------------|
+| Agregué testing a todos los componentes. | Cambiar la manera en que los videos de mis películas se cargan. El problema radica en que la API de TMDB no tiene suficientes trailers y tarda demasiado en cargar videos. Para esto, se me ocurre implementar otra API, como la de YouTube, para que lea los nombres de las series y películas y cargue un trailer para estas. Así no tardaría tanto en cargar los videos de las películas y series, y además solucionaría el problema que tengo en el buscador, que a veces algunas películas y series no tienen video. | El tema del performance no se ha mejorado mucho. |
+| Agregué el testing para todos los servicios. |  | La API de TMDB no tiene suficientes trailers y tarda demasiado en cargar videos. |
+| Se logró que un 90% de los tests pasaran. |  | El buscador a veces no encuentra videos para algunas películas y series. |
+| Se implementó RxJS. |  |  |
+| Se mejoró un poco más el diseño responsivo. |  |  |
+
+## 4to Sprint
+
+En este cuarto sprint, nos encargamos de integrar la base de datos para el login, registro y visualización de películas en el home.
+
+## Tecnologías Utilizadas
+
+- .NET Core y Entity Framework
+- SQL Server
+- Visual Studio 2022
+
+## Diagrama de Entidad-Relación de la Base de Datos
+![Diagrama de ER](src/assets/image/imgsRepo/DiagramaER.png)
+## 4to Sprint Review
+
+| ¿Qué salió bien? | ¿Qué puedo hacer diferente? | ¿Qué no salió bien? |
+|------------------|-----------------------------|---------------------|
+| Se logró integrar la base de datos para el login y registro. | Mejorar la validación de datos al registrarse. | Tuve algunos problemas con la configuración inicial de la base de datos. |
+| Se implementó la autenticación con JWT. | Aprender más sobre seguridad en aplicaciones web. | Al principio tuve problemas para manejar la autenticación con JWT. |
+| Se muestran películas y series en el home desde la base de datos. | Identificar mejor los problemas. | Me llevó mucho tiempo que se pudieran agregar a favoritos. |
+| Se mejoró la seguridad del login y registro. |  |  |
+| Se logró una conexión entre ambas APIs para poder guardar las películas y series en la base de datos dependiendo del id del usuario. |  |  |
+| Ya no se guardan datos de manera local. |  |  |
+| Se implementó el backend utilizando C# y .NET para evitar el retrabajo. |  |  |
+

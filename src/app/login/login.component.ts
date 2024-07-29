@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule]
+  imports: [FormsModule, CommonModule, RouterModule],
 })
 export class LoginComponent {
   username = '';
@@ -20,16 +20,14 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
-    const success = this.authService.login(this.username, this.password);
-    if (success) {
-      if (this.remember) {
-        localStorage.setItem('loggedIn', 'true');
-      } else {
-        sessionStorage.setItem('loggedIn', 'true');
+    this.authService.login(this.username, this.password).subscribe(
+      (response) => {
+        this.authService.saveToken(response.token);
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        alert('Invalid username or password');
       }
-      this.router.navigate(['/home']);
-    } else {
-      alert('Invalid username or password');
-    }
+    );
   }
 }

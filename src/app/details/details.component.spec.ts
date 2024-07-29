@@ -99,6 +99,19 @@ describe('DetailsComponent', () => {
     );
   });
 
+  it('should handle play button click with error', async () => {
+    movieService.getMovieVideoSrc.and.returnValue(Promise.reject('error'));
+
+    const consoleSpy = spyOn(console, 'error');
+
+    await component.handlePlayButtonClick('123', 'movie');
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'Error handling play button click:',
+      'error'
+    );
+  });
+
   it('should handle add to favorites button click', async () => {
     await component.ngOnInit();
     await component.handleFavoriteButtonClick(
@@ -116,6 +129,39 @@ describe('DetailsComponent', () => {
     );
   });
 
+  it('should handle add to favorites button click with error', async () => {
+    movieService.getMovieVideoSrc.and.returnValue(Promise.reject('error'));
+
+    const consoleSpy = spyOn(console, 'error');
+
+    await component.handleFavoriteButtonClick(
+      'Test Movie',
+      '/test_poster.jpg',
+      '123',
+      'movie'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'Error handling favorite button click:',
+      'error'
+    );
+  });
+
+  it('should handle add to favorites button click with null videoSrc', async () => {
+    movieService.getMovieVideoSrc.and.returnValue(Promise.resolve(null));
+
+    const consoleSpy = spyOn(console, 'error');
+
+    await component.handleFavoriteButtonClick(
+      'Test Movie',
+      '/test_poster.jpg',
+      '123',
+      'movie'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith('videoSrc is null');
+  });
+
   it('should display movie details in the template', async () => {
     await component.ngOnInit();
     fixture.detectChanges(); // Detecta los cambios después de cargar los datos
@@ -127,5 +173,17 @@ describe('DetailsComponent', () => {
       By.css('.leading-relaxed') // Asegúrate de que este selector coincida con el que usas en tu plantilla
     ).nativeElement;
     expect(overviewElement.textContent).toContain('Test overview');
+  });
+
+  it('should display error message if movieId or mediaType is missing', async () => {
+    component.data = {}; // Reset data
+    component.videoSrc = null; // Reset videoSrc
+
+    const consoleSpy = spyOn(console, 'error');
+
+    await component.ngOnInit();
+    fixture.detectChanges(); // Detecta los cambios después de cargar los datos
+
+    expect(consoleSpy).toHaveBeenCalled();
   });
 });

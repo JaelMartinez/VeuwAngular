@@ -1,6 +1,6 @@
 export interface FavoriteItem {
-    title: string;
-    imageSrc: string;
-    videoSrc: string;
-  }
-  
+  id: number; // ID agregado para la identificación de favoritos
+  title: string;
+  imageSrc: string;
+  videoSrc: string;
+}

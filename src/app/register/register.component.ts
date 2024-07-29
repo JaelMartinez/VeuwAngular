@@ -20,11 +20,13 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
-    const success = this.authService.register(this.username, this.password);
-    if (success) {
-      this.router.navigate(['/login']);
-    } else {
-      this.errorMessage = 'Username already exists';
-    }
+    this.authService.register(this.username, this.password).subscribe(
+      () => {
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        this.errorMessage = 'Username already exists';
+      }
+    );
   }
 }
