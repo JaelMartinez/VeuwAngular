@@ -157,10 +157,8 @@ En este cuarto sprint, nos encargamos de integrar la base de datos para el login
 
 En este sprint, mi enfoque principal fue la normalización de la base de datos, la implementación de la API con .NET Core y Entity Framework, y la integración de Docker en el frontend. Sin embargo, enfrenté problemas significativos al intentar conectar el backend con la base de datos a través de Docker, lo que impidió completar algunas tareas planificadas.
 
-
-
 ## Mejoras futuras
-
+-Agregar la funcionalidad para el Forgot password del login
 -Mejorar el rendimiento de la pagina
 -Mejorar la seguridad en el registro de usuarios
 -Mejorar la responsividad para dispositivos muy pequeños y muy grandes
@@ -192,6 +190,8 @@ En este sprint, mi enfoque principal fue la normalización de la base de datos, 
 
 ![Docker de frontend funcional](src/assets/image/imgsRepo/Docker.png)
 ![DockerDesktop](src/assets/image/imgsRepo/DockerDesktop.png)
+
+- **Repositorio del Backend**: [Ver en GitHub](https://github.com/JaelMartinez/BackVeuw.git)
 
 ## Tareas No Completadas
 
