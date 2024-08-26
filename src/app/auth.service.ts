@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7284/api/auth';
+  private apiUrl = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +31,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    window.location.href = '/login'; // O la ruta que consideres adecuada
   }
 
   saveToken(token: string) {

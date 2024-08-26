@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ThumbnailService {
-  private apiUrl = 'https://localhost:7284/api/thumbnails'; // Cambia esta URL si es necesario
+  private apiUrl = 'http://localhost:8080/api/thumbnails'; // Cambia esta URL si es necesario
 
   constructor(private http: HttpClient) {}
 

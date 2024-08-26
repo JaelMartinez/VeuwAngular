@@ -151,3 +151,66 @@ En este cuarto sprint, nos encargamos de integrar la base de datos para el login
 | Ya no se guardan datos de manera local. |  |  |
 | Se implementó el backend utilizando C# y .NET para evitar el retrabajo. |  |  |
 
+# 6to Sprint
+
+## Descripción del Sprint
+
+En este sprint, mi enfoque principal fue la normalización de la base de datos, la implementación de la API con .NET Core y Entity Framework, y la integración de Docker en el frontend. Sin embargo, enfrenté problemas significativos al intentar conectar el backend con la base de datos a través de Docker, lo que impidió completar algunas tareas planificadas.
+
+
+
+## Mejoras futuras
+
+-Mejorar el rendimiento de la pagina
+-Mejorar la seguridad en el registro de usuarios
+-Mejorar la responsividad para dispositivos muy pequeños y muy grandes
+-Implementación del ambiente productivo con kubernetes
+-Implementar el testing para todas las nuevas funciones
+
+## Tareas Completadas
+
+### 1. Normalización de la Base de Datos
+- **Descripción**: Eliminé la columna `FechaPublicacion` de la tabla `Thumbnails` porque no era esencial para el funcionamiento del sistema.
+- **Resultado**: La base de datos ahora está mejor estructurada y optimizada para las consultas realizadas por la aplicación.
+
+![Diagrama de ER](src/assets/image/imgsRepo/DiagramaER.png)
+
+### 2. Implementación de la API en .NET Core y Entity Framework
+- **Descripción**: Implementé una API utilizando .NET Core y Entity Framework para manejar el login, registro y la visualización de las películas en la página principal.
+- **Resultado**: La API permite una gestión eficiente de usuarios y películas, utilizando autenticación JWT para asegurar las operaciones de login y registro.
+
+### 3. Mejoras en el Manejo de Rutas y Funcionalidad de Sliders
+- **Descripción**: Realicé cambios en cómo se manejan las rutas en el proyecto para evitar errores en el funcionamiento de los sliders. Anteriormente, estos se bugueaban al cambiar de ruta.
+- **Resultado**: Ahora los sliders funcionan correctamente y la navegación es más fluida, mejorando la experiencia del usuario.
+
+### 4. Implementación de Docker en el Frontend
+- **Descripción**: Implementé Docker exitosamente en el frontend, lo que facilita la distribución y la configuración de la aplicación en diferentes entornos.
+- **Resultado**: Aunque la implementación en el backend no fue posible, el frontend está preparado para futuras configuraciones en ambientes productivos.
+
+## 5. Backend
+-Se cambiaron algunas rutas para que funcionen con el docker del frontend y se hicieron avances en el docker para el backend.
+
+![Docker de frontend funcional](src/assets/image/imgsRepo/Docker.png)
+![DockerDesktop](src/assets/image/imgsRepo/DockerDesktop.png)
+
+## Tareas No Completadas
+
+### 1. Implementación de Docker en el Backend
+- **Descripción**: Intenté implementar Docker en el backend para asegurar que el proyecto sea portable y fácil de desplegar en distintos entornos. Sin embargo, surgieron problemas al intentar conectar Docker con la base de datos SQL Server.
+- **Problema**: No pude establecer una conexión estable entre el backend y la base de datos dentro del contenedor Docker, lo que impidió avanzar en la configuración del ambiente productivo.
+- **Solución Propuesta**: Recomiendo investigar más a fondo sobre la configuración de Docker y SQL Server o considerar alternativas como la autenticación con SQL Server en lugar de `Integrated Security`.
+### 2. Implementación de kubernetes
+-Debido a problemas con el backend no pude continuar
+
+## Sprint Review
+
+| ¿Qué salió bien?                                    | ¿Qué puedo hacer diferente?                                | ¿Qué no salió bien?                                           |
+|----------------------------------------------------|------------------------------------------------------------|--------------------------------------------------------------|
+| Normalización exitosa de la base de datos.         | Mejorar mi conocimiento sobre Docker y su integración con SQL Server. | No se pudo completar la implementación de Docker en el backend. |
+| Implementación de la API con .NET Core.            | Buscar soluciones de docker y kubernetes.           | Problemas de conexión entre Docker y SQL Server impidieron avanzar. |
+| Mejoras en la gestión de rutas y funcionamiento de sliders. |                                                           |                                                              |
+
+## Conclusión
+
+A pesar de los problemas enfrentados con Docker, logré avances significativos en la estructura de la base de datos y la implementación de la API. También fue exitoso el enfoque en mejorar la funcionalidad y la estructura del frontend, estableciendo una base sólida para los próximos sprints.
+

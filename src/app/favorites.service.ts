@@ -7,7 +7,7 @@ import { FavoriteItem } from './favorite-item.model';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private apiUrl = 'https://localhost:7284/api/favorites';
+  private apiUrl = 'http://localhost:8080/api/favorites';
 
   constructor(private http: HttpClient) {}
 
